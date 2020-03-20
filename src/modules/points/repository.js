@@ -9,46 +9,25 @@ exports.findByEmail = async email => Point.findOne({ email })
 
 exports.findById = async _id => Point.findById(_id)
 
-// return City.create({ name: 'Denver', location: denver }).
-//   then(() => City.findOne({
-//     location: {
-//       $geoWithin: {
-//         $geometry: colorado
-//       }
-//     }
-//   })).
-
-exports.findByPoints = async _id => Point.aggregate([
+exports.findByPoints = async ({ lat, long, maxDistance }) => Point.aggregate([
     {
         $geoNear: {
-            near: { type: 'Point', coordinates: [-4.101198, -38.456351] },
+            near: { type: 'Point', coordinates: [parseFloat(lat), parseFloat(long)] },
             distanceField: 'calculated',
-            maxDistance: 28000,
-            minDistance: 2,
+            maxDistance: parseFloat(maxDistance) || 500,
             spherical: true
+        }
+    },
+    {
+        $group: {
+            _id: '$user.email',
+            name: { $last: '$user.name' },
+            distance: { $last: '$calculated' },
+            coordinates: { $last: '$location.coordinates' },
+            date: { $last: '$createdAt' }
         }
     }
 ])
-
-// exports.findByPoints = async _id => Point.findOne({
-//     location: {
-//         // $geoWithin: {
-//         //     $geometry: colorado
-//         // }
-//         $near: {
-//             $geometry: {
-//                 type: 'Point',
-//                 coordinates: [-3.842254, -38.488863]
-//             },
-//             $maxDistance: 0,
-//             $minDistance: 10000000
-//         }
-//     }
-// })
-// exports.findByPoints = async _id => Point.geoNear(
-//     { type: 'Point', coordinates: [-3.842254, -38.488863] },
-//     { maxDistance: 10000, spherical: true }
-// )
 
 exports.find = async (query = {}) => Point.find(query)
 

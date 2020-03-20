@@ -1,4 +1,4 @@
-const { createPoint, updateCustomer, findCustomer, findPoints, findOneCustomer, remove } = require('./service')
+const { createPoint, updateCustomer, findPoints, findOneCustomer, remove } = require('./service')
 
 module.exports.find = async (req, res, next) => {
     try {

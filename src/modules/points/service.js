@@ -39,6 +39,7 @@ exports.findCustomer = async (query) => {
 
 exports.findPoints = async (query) => {
     try {
+        console.log('query: ', query)
         const resp = await findByPoints(query)
 
         logger.info({ endpoint: 'points/', method: 'findPoints', request: query, response: resp })

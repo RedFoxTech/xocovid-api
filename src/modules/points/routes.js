@@ -10,7 +10,7 @@ const { tokenVerify } = require('./../../middlewares/authentication')
 
 router.get('/', tokenVerify, find)
 
-// router.get('/', tokenVerify, findPoints)
+// router.get('/', tokenVerify, find)
 
 router.get('/:_id', tokenVerify, validate(contract.findOneCustomer), findOne)
 
