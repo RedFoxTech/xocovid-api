@@ -9,7 +9,7 @@ const moduleError = {
     },
     productNotFound: {
         status: HttpStatus.NOT_FOUND,
-        message: 'Product not found in base magalu'
+        message: 'Product not found in base'
     },
     customerNotFound: {
         status: HttpStatus.NOT_FOUND,

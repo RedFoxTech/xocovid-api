@@ -3,9 +3,9 @@ Joi.objectId = require('joi-objectid')(Joi)
 
 module.exports = {
     createPoint: {
-        body: {
-            point: Joi.array().required()
-        }
+        // body: {
+        //     point: Joi.array().required()
+        // }
     },
     findOneCustomer: {
         params: {

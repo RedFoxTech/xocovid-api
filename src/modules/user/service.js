@@ -9,7 +9,6 @@ const { saveUser, list, findByEmail } = require('./repository')
 const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 
 exports.createUserService = async (body) => {
-    console.log('bodyy: ', body)
     try {
         body.password = generateHash(body.password)
         const user = userMapper(body)

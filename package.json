@@ -15,8 +15,7 @@
   },
   "author": "israel dantas",
   "license": "MIT",
-  "bugs": {
-  },
+  "bugs": {},
   "homepage": "https://github.com/rael97/xocovid#readme",
   "dependencies": {
     "axios": "^0.18.1",
