@@ -14,8 +14,8 @@ router.post('/', validate(contract.createUser), create)
 
 router.post('/sign-in', validate(contract.signIn), signIn)
 
-router.post('/recovery-password', tokenVerify, codeRecoveryPassword)
+router.post('/recovery-password/:email', codeRecoveryPassword)
 
-router.put('/recovery-password', tokenVerify, updateNewPassword)
+router.put('/recovery-password/:email', updateNewPassword)
 
 module.exports = { router, endpoint: '/user' }

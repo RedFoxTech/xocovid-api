@@ -21,13 +21,18 @@ exports.createCodeRecoveryPassword = async (user) => {
     try {
         const codeRecovery = makeCode(6).toLocaleLowerCase()
 
+        const resp = await updateOne({ email: user.email }, { codeRecovery })
+        if (!resp.nModified) {
+            return {
+                result: 'user not found'
+            }
+        }
         sendEmailRecoveryPassword(user, codeRecovery)
-
-        const resp = await updateOne({ _id: user._id }, { codeRecovery })
 
         logger.info({ endpoint: 'user/recovery-password', method: 'createCodeRecoveryPassword', request: user, response: resp })
         return {
-            result: 'code generate'
+            result: 'code generate',
+            resp
         }
     } catch (err) {
         if (err.message.startsWith('E11000')) throw error('E11000')
@@ -42,11 +47,11 @@ exports.updateNewPassword = async (user, body) => {
         const data = await findByEmailAndCode(user.email, body.code)
         if (!data) {
             return {
-                msg: 'code invalid'
+                msg: 'code invalid or email'
             }
         }
         const password = generateHash(body.password)
-        const resp = await updateOne({ _id: user._id }, { password, codeRecovery: '' })
+        const resp = await updateOne({ email: user.email }, { password, codeRecovery: '' })
 
         logger.info({ endpoint: 'user/recovery-password', method: 'createCodeRecoveryPassword', request: user, response: data })
         return {

@@ -27,7 +27,7 @@ module.exports.signIn = async (req, res, next) => {
 
 module.exports.codeRecoveryPassword = async (req, res, next) => {
     try {
-        res.json(await createCodeRecoveryPassword(req.user))
+        res.json(await createCodeRecoveryPassword(req.params))
     } catch (error) {
         next(error)
     }
@@ -35,7 +35,7 @@ module.exports.codeRecoveryPassword = async (req, res, next) => {
 
 module.exports.updateNewPassword = async (req, res, next) => {
     try {
-        res.json(await updateNewPassword(req.user, req.body))
+        res.json(await updateNewPassword({ email: req.params.email }, req.body))
     } catch (error) {
         next(error)
     }
