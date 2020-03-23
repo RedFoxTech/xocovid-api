@@ -13,6 +13,22 @@ const userStatusHistoricSchema = new Schema({
         type: Number,
         required: true
     },
+    suspiciousPeople: {
+        type: Boolean,
+        required: false
+    },
+    casesConfirmed: {
+        type: Boolean,
+        required: false
+    },
+    yourCaseConfirmed: {
+        type: Boolean,
+        required: false
+    },
+    traveled: {
+        type: Boolean,
+        required: false
+    },
     location: {
         type: {
             type: String, // Don't do `{ location: { type: String } }`

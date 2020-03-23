@@ -16,7 +16,7 @@ exports.findByPoints = async (user, { lat, long, maxDistance }) => UserStatus.ag
             near: { type: 'Point', coordinates: [parseFloat(lat), parseFloat(long)] },
             distanceField: 'calculated',
             query: { 'user.email': { $ne: user.email || '' }, probability: { $ne: 0 } },
-            maxDistance: parseFloat(maxDistance) || 500,
+            maxDistance: parseFloat(maxDistance) || 1000,
             spherical: true
         }
     },
