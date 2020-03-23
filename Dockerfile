@@ -2,7 +2,7 @@ FROM node:10
 
 WORKDIR /app
 
-COPY . /app:delegated
+COPY . /app
 
 EXPOSE 3000
 
