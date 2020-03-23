@@ -23,7 +23,7 @@ services:
       #
   api:
     container_name: node_wishlist
-    image: node:10
+    image: gcr.io/redfox-tech/api-prod 
     networks:
       - db_mongo
       - db_redis
