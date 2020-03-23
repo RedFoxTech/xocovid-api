@@ -98,7 +98,7 @@ steps:
 - name: publish
   image: banzaicloud/drone-kaniko
   settings:
-    registry: gcr.io/
+    registry: gcr.io
     repo: redfox-tech/api-prod
     tags:
       - latest
