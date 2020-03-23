@@ -2,7 +2,7 @@ const error = require('./error')
 const { factoryLogger } = require('../../helpers/logger/logger')
 const { updateOne, findOne } = require('./repository')
 
-const { findProducts } = require('../../services/integrationMagalu/service')
+const { findProducts } = require('../../services/email/service')
 
 const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 
