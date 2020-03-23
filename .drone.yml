@@ -38,8 +38,8 @@ steps:
 - name: publish
   image: banzaicloud/drone-kaniko
   settings:
-    registry: https://registry.redfox.dev/
-    repo: nearid/api-staging
+    registry: gcr.io
+    repo: redfox-tech/api-staging
     tags:
       - latest
     build_args:
@@ -68,8 +68,8 @@ steps:
 - name: publish
   image: banzaicloud/drone-kaniko
   settings:
-    registry: https://registry.redfox.dev/
-    repo: nearid/api-dev
+    registry: gcr.io
+    repo: redfox-tech/api-dev
     tags:
       - latest
     build_args:
@@ -98,8 +98,8 @@ steps:
 - name: publish
   image: banzaicloud/drone-kaniko
   settings:
-    registry: https://registry.redfox.dev/
-    repo: nearid/api-prod
+    registry: gcr.io/
+    repo: redfox-tech/api-prod
     tags:
       - latest
     build_args:
