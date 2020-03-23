@@ -20,6 +20,7 @@ services:
       DOMAINS: 'xocovid-api.redfox.tech -> http://api:3000'
       STAGE: 'production'
       # FORCE_RENEW: 'true'
+      #
   api:
     container_name: node_wishlist
     image: node:10
@@ -29,13 +30,10 @@ services:
     ports:
       - 3000
 
-    command: sh -c "npm install && npm run start"
+    command: sh -c "npm run start"
     depends_on:
       - mongo
       - redis
-    working_dir: /app
-    volumes:
-      - ./:/app:delegated
     environment:
       NODE_ENV: development
     env_file:
