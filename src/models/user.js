@@ -65,6 +65,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    codeRecovery: {
+        type: String,
+        required: false
+    },
     createdAt: Date,
     updatedAt: Date
 })
