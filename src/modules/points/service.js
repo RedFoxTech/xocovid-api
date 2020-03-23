@@ -2,14 +2,15 @@ const error = require('./error')
 const { pointMapper } = require('./../../mappers/point')
 const { factoryLogger } = require('../../helpers/logger/logger')
 const { saveCustomer, updateOne, find, findOne, removeOne, findByPoints } = require('./repository')
-
+const { updateLocation } = require('./../userStatus/service')
 const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 
 exports.createPoint = async (body) => {
     try {
         const location = pointMapper(body)
-        const resp = await saveCustomer(location)
 
+        const resp = await saveCustomer(location)
+        await updateLocation(location)
         logger.info({ endpoint: 'points/', method: 'createPoint', request: body, response: resp })
 
         return resp

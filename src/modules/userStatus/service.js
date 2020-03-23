@@ -1,7 +1,7 @@
 const error = require('./error')
 const { pointMapper } = require('./../../mappers/point')
 const { factoryLogger } = require('../../helpers/logger/logger')
-const { saveCustomer, updateOneAndCreateHistoric, find, findOne, removeOne, findByPoints } = require('./repository')
+const { saveCustomer, updateOne, updateOneAndCreateHistoric, find, findOne, removeOne, findByPoints } = require('./repository')
 
 const logger = factoryLogger({ dir: __dirname, locale: 'service.js' })
 
@@ -82,6 +82,21 @@ exports.updateOrAddUserStatus = async (user, body = {}) => {
     } catch (err) {
         console.log('errorrr', err)
         logger.error({ endpoint: 'points/', method: 'updateCustomer', err: String(err), request: body })
+
+        throw error(err.message)
+    }
+}
+
+exports.updateLocation = async ({ user, location }) => {
+    try {
+        const resp = await updateOne({ 'user.email': user.email }, { location })
+
+        logger.info({ endpoint: 'points/', method: 'updateCustomer', request: user, response: resp })
+
+        return resp
+    } catch (err) {
+        console.log('errorrr', err)
+        logger.error({ endpoint: 'points/', method: 'updateCustomer', err: String(err), request: user })
 
         throw error(err.message)
     }
