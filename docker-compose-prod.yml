@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - db_mongo
+      - db_redis
+    volumes:
+      - ssl_certs:/var/lib/https-portal
+    environment:
+      SERVER_NAMES_HASH_BUCKET_SIZE: 128
+      CLIENT_MAX_BODY_SIZE: 50M
+      PROXY_CONNECT_TIMEOUT: 120
+      PROXY_SEND_TIMEOUT: 120
+      PROXY_READ_TIMEOUT: 120
+      DOMAINS: 'xocovid-api.redfox.tech -> http://api:3000'
+      STAGE: 'production'
+      # FORCE_RENEW: 'true'
+      #
+  api:
+    container_name: node_wishlist
+    image: node:10
+    networks:
+      - db_mongo
+      - db_redis
+    ports:
+      - 3000
+
+    command: sh -c "npm run start"
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env
+
+  mongo:
+    container_name: mongo_wishlist
+    image: mongo
+    networks:
+      - db_mongo
+    volumes:
+      - db_data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_USER: root
+      MONGODB_PASS: root
+      MONGO_DATA_DIR: /data/db
+  
+  redis:
+    image: redis
+    container_name: redis_wishlist
+    networks:
+      - db_redis
+    command: redis-server
+    ports:
+      - "6379:6379"
+
+networks:
+  db_mongo:
+  db_redis:
+
+volumes:
+  db_data:
+  ssl_certs:
+
