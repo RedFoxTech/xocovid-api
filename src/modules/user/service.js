@@ -99,7 +99,7 @@ exports.listUserService = async (body) => {
 }
 exports.signInService = async (body) => {
     try {
-        const user = await findByEmail(body.email)
+        const user = await findByEmail(body.email.toLocaleLowerCase())
 
         if (!user) throw new Error('notFound')
 
