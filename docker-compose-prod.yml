@@ -38,6 +38,11 @@ services:
       NODE_ENV: development
     env_file:
       - .env
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
 
   mongo:
     container_name: mongo_wishlist
