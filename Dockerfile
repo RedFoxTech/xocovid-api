@@ -2,7 +2,7 @@ FROM node:10
 
 WORKDIR /app
 
-COPY . /app
+COPY . /app/
 
 ENV NODE_ENV=development
 
