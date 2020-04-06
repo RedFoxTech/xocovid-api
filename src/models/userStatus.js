@@ -26,6 +26,22 @@ const userStatusSchema = new Schema({
         type: Boolean,
         required: false
     },
+    chronic:{
+        type: Array,
+        required: false
+    },
+    heart:{
+        type: Array,
+        required: false
+    },
+    respiratory:{
+        type: Array,
+        required: false
+    },
+    immunological: {
+        type: Array,
+        required: false
+    },
     traveled: {
         type: Boolean,
         required: false
