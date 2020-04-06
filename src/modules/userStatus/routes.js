@@ -14,7 +14,7 @@ router.get('/:_id', tokenVerify, validate(contract.findOneCustomer), findOne)
 
 router.post('/', tokenVerify, validate(contract.createPoint), create)
 
-router.put('/', tokenVerify, validate(contract.addOrUpdateUserStatus), update)
+router.put('/', tokenVerify, update)
 
 router.delete('/:_id', tokenVerify, validate(contract.removeCustomer), removeOneCustomer)
 
