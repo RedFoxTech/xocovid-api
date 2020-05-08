@@ -36,9 +36,8 @@ exports.find = async (query = {}) => UserStatus.find(query)
 exports.findOne = async (query = {}, projection) => UserStatus.findOne(query, projection)
 
 exports.updateOneAndCreateHistoric = async (...params) => {
-    console.log('marpas: ', params)
     const newUserStatus = new UserStatusHistoric(params[1])
-    newUserStatus.save().then(data => console.log('date: status', data)).catch(console.log)
+    await newUserStatus.save()
     return UserStatus.updateOne(...params)
 }
 

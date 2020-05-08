@@ -4,8 +4,6 @@ Joi.objectId = require('joi-objectid')(Joi)
 module.exports = {
     createPoint: {
         body: {
-            symptoms: Joi.array().required(),
-            probability: Joi.number().required(),
             point: Joi.array().required()
         }
     },
@@ -16,8 +14,6 @@ module.exports = {
     },
     addOrUpdateUserStatus: {
         body: {
-            symptoms: Joi.array().required(),
-            probability: Joi.number().required(),
             point: Joi.array().required()
         }
     },

@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose')
 const userStatusHistoricSchema = new Schema({
     user: {
         type: Object,
-        required: false
+        required: false,
+        unique: true
     },
     symptoms: {
         type: Array,
@@ -23,6 +24,22 @@ const userStatusHistoricSchema = new Schema({
     },
     yourCaseConfirmed: {
         type: Boolean,
+        required: false
+    },
+    chronic:{
+        type: Array,
+        required: false
+    },
+    heart:{
+        type: Array,
+        required: false
+    },
+    respiratory:{
+        type: Array,
+        required: false
+    },
+    immunological: {
+        type: Array,
         required: false
     },
     traveled: {
