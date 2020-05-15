@@ -1,5 +1,5 @@
 kind: pipeline
-name: default
+name: teste-pipeline
 trigger:
   branch:
     - dev
