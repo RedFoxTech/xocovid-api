@@ -19,7 +19,7 @@
   "homepage": "https://github.com/rael97/xocovid#readme",
   "dependencies": {
     "@sendgrid/mail": "^6.5.5",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "axios-cache-adapter": "^2.4.1",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
