@@ -37,7 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "sendgrid": "^5.2.3",
     "winston": "^3.2.1"
   },
